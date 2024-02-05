@@ -1,6 +1,9 @@
 import logo from "./logo.svg";
 import "./App.css";
 import Design from "./Design/Design";
+import GetOTP from "./Design/GetOTP";
+import Verify from "./Design/Verify";
+import Loading from "./Design/Loading";
 
 function App() {
   return (
@@ -21,7 +24,10 @@ function App() {
     //   </header>
     // </div>
     <div>
-      <Design />
+      {/* <Design /> */}
+      <Loading />
+      <GetOTP />
+      <Verify />
     </div>
   );
 }
