@@ -4,6 +4,7 @@ import Design from "./Design/Design";
 import GetOTP from "./Design/GetOTP";
 import Verify from "./Design/Verify";
 import Loading from "./Design/Loading";
+import Pages from "./Web/Pages";
 
 function App() {
   return (
@@ -25,9 +26,10 @@ function App() {
     // </div>
     <div>
       {/* <Design /> */}
-      <Loading />
+      {/* <Loading />
       <GetOTP />
-      <Verify />
+      <Verify /> */}
+      <Pages />
     </div>
   );
 }
