@@ -3,6 +3,25 @@ import line from "../Assets/line.png";
 import otp from "../Assets/otp.png";
 
 export default function Web() {
+  const [dataToSend, setDataToSend] = React.useState("");
+  const [responseMessage, setResponseMessage] = React.useState("");
+
+  const sendDataToServer = () => {
+    fetch("http://localhost:3001/api/sendData", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ data: dataToSend.toString() }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setResponseMessage(data.message);
+      })
+      .catch((error) => {
+        console.error("Error sending data to server:", error.message);
+      });
+  };
   return (
     <div className="login main-background">
       <div className="container">
@@ -22,10 +41,46 @@ export default function Web() {
             <h1 className="mt-md-5 pt-md-5">Easy Verification Code</h1>
             <h3 className="mt-3">Easy way to verify your system login</h3>
             <div className="px-5">
-              <input className="w-100 px-2" placeholder="Enter OTP code" />
-              <button className="btn primary-btn mt-5 px-3 py-3">
+              <input
+                className="w-100 px-2"
+                placeholder="Enter OTP code"
+                onKeyPress={(e) => {
+                  // Allow only numeric keys and certain control keys like Backspace and Arrow keys
+                  const allowedKeys = [
+                    "0",
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7",
+                    "8",
+                    "9",
+                    "Backspace",
+                    "ArrowLeft",
+                    "ArrowRight",
+                    "Delete",
+                    "Tab",
+                  ];
+                  if (!allowedKeys.includes(e.key)) {
+                    e.preventDefault();
+                  }
+                }}
+                onChange={(e) => {
+                  const enteredValue = e.target.value;
+                  const intValue = parseInt(enteredValue, 10);
+                  setDataToSend(isNaN(intValue) ? "" : intValue);
+                }}
+              />
+
+              <button
+                className="btn primary-btn mt-5 px-3 py-3"
+                onClick={sendDataToServer}
+              >
                 Submit OTP Code
               </button>
+              {responseMessage}
             </div>
           </div>
         </div>

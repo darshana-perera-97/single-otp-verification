@@ -4,6 +4,9 @@ import line from "../Assets/line.png";
 import otp from "../Assets/otp.png";
 
 export default function Login() {
+  const [userName, setUserName] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [state, setState] = React.useState(1);
   return (
     <div className="login main-background">
       <div className="container">
@@ -23,13 +26,36 @@ export default function Login() {
             <h1 className="mt-md-5 pt-md-5">Easy Verification Code</h1>
             <h3 className="mt-3">Easy way to verify your system login</h3>
             <div className="px-5">
-              <input className="w-100 px-2" placeholder="Enter User Name" />
+              <input
+                className="w-100 px-2"
+                placeholder="Enter User Name"
+                onChange={(e) => {
+                  setUserName(e.target.value);
+                }}
+              />
               <input
                 className="w-100 px-2"
                 placeholder="Enter Password"
                 type="password"
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
               />
-              <button className="btn primary-btn mt-5 px-3 py-3">
+              {!state && (
+                <p className="mt-2 primary-clr">
+                  Incorrect Username or Password
+                </p>
+              )}
+              <button
+                className="btn primary-btn mt-5 px-3 py-3"
+                onClick={() => {
+                  if (userName === "0" && password === "0") {
+                    console.log(userName + " | " + password);
+                  } else {
+                    setState(false);
+                  }
+                }}
+              >
                 Admin Login
               </button>
             </div>

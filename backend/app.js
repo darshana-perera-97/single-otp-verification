@@ -19,7 +19,8 @@ app.use(bodyParser.json());
 app.post("/api/sendData", (req, res) => {
   const receivedData = req.body;
   console.log("Received data on the server:", receivedData.data, "| ", code);
-  if (receivedData.data === code) {
+  console.log("type", typeof receivedData.data.toString());
+  if (receivedData.data.toString() === code) {
     res.json({ message: "success" });
   } else {
     res.json({ message: "error" });
