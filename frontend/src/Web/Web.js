@@ -2,7 +2,7 @@ import React from "react";
 import line from "../Assets/line.png";
 import otp from "../Assets/otp.png";
 
-export default function Web() {
+export default function Web(prop) {
   const [dataToSend, setDataToSend] = React.useState("");
   const [responseMessage, setResponseMessage] = React.useState("");
 
@@ -17,6 +17,9 @@ export default function Web() {
       .then((response) => response.json())
       .then((data) => {
         setResponseMessage(data.message);
+        if (responseMessage === "success") {
+          prop.setOk(false);
+        }
       })
       .catch((error) => {
         console.error("Error sending data to server:", error.message);
@@ -77,6 +80,7 @@ export default function Web() {
               <button
                 className="btn primary-btn mt-5 px-3 py-3"
                 onClick={sendDataToServer}
+                if
               >
                 Submit OTP Code
               </button>
