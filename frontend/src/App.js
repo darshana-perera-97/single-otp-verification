@@ -6,6 +6,7 @@ import GetOTP from "./Design/GetOTP";
 import Verify from "./Design/Verify";
 import Loading from "./Design/Loading";
 import Pages from "./Web/Pages";
+import RoutingPage from "./Web/RoutingPage";
 
 function App() {
   return (
@@ -30,7 +31,8 @@ function App() {
       {/* <Loading />
       <GetOTP />
       <Verify /> */}
-      <Pages />
+      {/* <Pages /> */}
+      <RoutingPage />
     </div>
   );
 }

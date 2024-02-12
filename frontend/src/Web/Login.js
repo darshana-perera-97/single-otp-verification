@@ -3,7 +3,7 @@ import admin from "../Assets/admin.png";
 import line from "../Assets/line.png";
 import otp from "../Assets/otp.png";
 
-export default function Login() {
+export default function Login(prop) {
   const [userName, setUserName] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [state, setState] = React.useState(1);
@@ -51,6 +51,7 @@ export default function Login() {
                 onClick={() => {
                   if (userName === "0" && password === "0") {
                     console.log(userName + " | " + password);
+                    prop.setOk(false);
                   } else {
                     setState(false);
                   }
